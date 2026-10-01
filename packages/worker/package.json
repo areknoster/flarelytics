@@ -6,10 +6,10 @@
 	"main": "src/index.ts",
 	"scripts": {
 		"setup": "bash setup.sh",
-		"predev": "bun --cwd ../tracker run build",
+		"predev": "bun run --cwd ../tracker build",
 		"dev": "wrangler dev",
 		"build": "wrangler deploy --dry-run --outdir dist",
-		"predeploy": "bun --cwd ../tracker run build",
+		"predeploy": "bun run --cwd ../tracker build",
 		"deploy": "wrangler deploy",
 		"typecheck": "tsc --noEmit",
 		"test": "vitest run"
