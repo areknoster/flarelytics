@@ -23,6 +23,8 @@ function defaultEndpoint(): string {
 }
 
 let endpoint = '';
+let initialized = false;
+let beforeSend: ((payload: Record<string, unknown>) => Record<string, unknown> | null) | undefined;
 let emitCanonical = false;
 let allowLocalhost = false;
 let scrollDepthEnabled = false;
@@ -35,6 +37,8 @@ interface TrackOptions {
 }
 
 export interface InitOptions {
+  /** Optional privacy/exclusion policy applied before serialization. */
+  beforeSend?: (payload: Record<string, unknown>) => Record<string, unknown> | null;
   /** Track scroll depth at 25/50/75/100% milestones using IntersectionObserver */
   scrollDepth?: boolean;
   /** Emit normalized canonical_url on pageview events */
@@ -116,7 +120,9 @@ function send(event: string, data: Record<string, unknown> = {}, opts: { noRefer
     }
   }
 
-  const json = JSON.stringify(payload);
+  const filtered = beforeSend ? beforeSend(payload) : payload;
+  if (!filtered) return;
+  const json = JSON.stringify(filtered);
   const blob = new Blob([json], { type: 'application/json' });
 
   // sendBeacon returns false when the browser refuses to queue the request
@@ -276,6 +282,9 @@ function initSpaTracking(): void {
 
 /** Initialize Flarelytics with your worker endpoint */
 export function init(workerEndpoint: string, options: InitOptions = {}): void {
+  if (initialized) return;
+  initialized = true;
+  beforeSend = options.beforeSend;
   endpoint = workerEndpoint.replace(/\/$/, '');
   emitCanonical = options.emitCanonical === true;
   allowLocalhost = options.allowLocalhost === true;

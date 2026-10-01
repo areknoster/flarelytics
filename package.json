@@ -1,34 +1,34 @@
 {
-  "name": "flarelytics",
-  "version": "0.2.0",
-  "private": true,
-  "description": "Privacy-first web analytics that runs entirely on Cloudflare",
-  "workspaces": [
-    "packages/*"
-  ],
-  "scripts": {
-    "dev": "turbo dev",
-    "build": "turbo build",
-    "test": "turbo test",
-    "lint": "turbo lint",
-    "check": "turbo run typecheck test build"
-  },
-  "devDependencies": {
-    "turbo": "^2.4.0",
-    "typescript": "^5.8.0"
-  },
-  "packageManager": "npm@10.9.3",
-  "engines": {
-    "node": ">=22.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kalle-works/flarelytics.git"
-  },
-  "homepage": "https://flarelytics.dev",
-  "bugs": {
-    "url": "https://github.com/kalle-works/flarelytics/issues"
-  },
-  "license": "MIT",
-  "author": "Kalle Lamminpää"
+	"name": "flarelytics",
+	"version": "0.2.0",
+	"private": true,
+	"description": "Privacy-first web analytics that runs entirely on Cloudflare",
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"dev": "turbo dev",
+		"build": "turbo build",
+		"test": "turbo test",
+		"lint": "turbo lint",
+		"check": "turbo run typecheck test build"
+	},
+	"devDependencies": {
+		"turbo": "^2.4.0",
+		"typescript": "^5.8.0"
+	},
+	"packageManager": "bun@1.3.14",
+	"engines": {
+		"node": ">=22.0.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kalle-works/flarelytics.git"
+	},
+	"homepage": "https://flarelytics.dev",
+	"bugs": {
+		"url": "https://github.com/kalle-works/flarelytics/issues"
+	},
+	"license": "MIT",
+	"author": "Kalle Lamminpää"
 }
